@@ -1,6 +1,6 @@
 import "./App.css";
 import ImageGrid from "./components/ImageGrid";
-import main from "/photos/DM004914.jpg";
+import main from "/photos/DM_02805.jpg";
 import { motion } from "framer-motion";
 
 function App() {
@@ -40,10 +40,10 @@ function App() {
           className="z-10 absolute left-0 right-0 top-0 bottom-5 flex flex-col items-center justify-end text-white background-slate-900/20"
         >
           <h1 className="font-bold text-4xl lg:text-6xl z-10">
-            Jordan & Justice
+            Val & Tina
           </h1>
-          <strong className="text-6xl lg:text-8xl"> Gilliam</strong>
-          <h2 className="text-2xl lg:text-4xl z-10">Feburary 24th, 2024</h2>
+          <strong className="text-6xl lg:text-8xl"> Tamm</strong>
+          <h2 className="text-2xl lg:text-4xl z-10">August 30th, 20255</h2>
           <a
             href="#img-grid"
             className="hover:border-slate-300 hover:text-slate-300 border-2 border-white rounded-lg px-4 my-2"
