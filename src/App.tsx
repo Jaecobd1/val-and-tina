@@ -1,6 +1,6 @@
 import "./App.css";
 import ImageGrid from "./components/ImageGrid";
-import main from "/photos/DM_03281.jpg";
+import main from "/photos/DM_03304.jpg";
 import { motion } from "framer-motion";
 
 function App() {
