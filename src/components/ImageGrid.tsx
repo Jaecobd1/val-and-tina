@@ -102,8 +102,8 @@ function ImageGrid() {
         </select>
         <a
           className="border-2 text-slate-700 hover:text-slate-500 border-slate-700 hover:border-slate-500 font-bold py-2 px-4 rounded-lg p-4 w-44"
-          href="../../photos/j&j edited.zip"
-          download="j&j edited.zip"
+          href="../../photos/v&t edited.zip"
+          download="v&t edited.zip"
         >
           Download All
         </a>

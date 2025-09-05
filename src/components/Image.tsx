@@ -53,8 +53,8 @@ function Image({ image, index }: { image: string; index: number }) {
               className="bg-slate-900 w-12 h-12 rounded-lg flex items-center justify-center hover:bg-slate-300 hover:text-slate-900"
               onClick={() => {
                 navigator.share({
-                  title: "Jordan & Justice",
-                  text: "Check out this image from Jordan and Justice's wedding! And view the rest at https://jordan-and-justice.dobler.studio/",
+                  title: "Val & Tina",
+                  text: "Check out this image from Val and Tina's wedding! And view the rest at https://val-and-tina.dobler.studio/",
                   url: image,
                 });
               }}
