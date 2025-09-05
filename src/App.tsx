@@ -1,6 +1,6 @@
 import "./App.css";
 import ImageGrid from "./components/ImageGrid";
-import main from "/photos/DM_02805.jpg";
+import main from "/photos/DM_03281.jpg";
 import { motion } from "framer-motion";
 
 function App() {
@@ -53,7 +53,7 @@ function App() {
         </motion.div>
         <img
           src={main}
-          alt="Jordan & Justice Gilliam"
+          alt="Val & Tina Gilliam"
           className="absolute top-0 z-0 object-cover h-full w-full"
         />
       </motion.nav>
