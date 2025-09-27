@@ -42,7 +42,16 @@ function ImageGrid() {
   //   }
   // };
 
-  const [filter, setFilter] = useState("Older");
+  // Initialize filter from URL query parameter or default to "Older"
+  const getFilterFromURL = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    return filterParam && ['Older', 'Newer', 'Random'].includes(filterParam) 
+      ? filterParam 
+      : 'Older';
+  };
+
+  const [filter, setFilter] = useState(getFilterFromURL());
   // const reversedImageContext = Object.fromEntries(
   //   Object.entries(imageContext).reverse()
   // );
@@ -50,15 +59,32 @@ function ImageGrid() {
     images.filter((_, i) => i < 25)
   );
 
+  // Function to update URL with filter parameter
+  const updateURLWithFilter = (newFilter: string) => {
+    const url = new URL(window.location.href);
+    if (newFilter === 'Older') {
+      url.searchParams.delete('filter'); // Remove filter param for default
+    } else {
+      url.searchParams.set('filter', newFilter);
+    }
+    window.history.pushState({}, '', url.toString());
+  };
+
+  // Function to handle filter change
+  const handleFilterChange = (newFilter: string) => {
+    setFilter(newFilter);
+    updateURLWithFilter(newFilter);
+  };
+
   useEffect(() => {
     if (filter === "Older") {
       setDisplayImages(images.slice(0, 25));
     } else if (filter === "Newer") {
       setDisplayImages([...images].reverse().slice(0, 25));
     } else if (filter === "Random") {
-      setDisplayImages(
-        [...images].sort(() => Math.random() - 0.5).slice(0, 25)
-      );
+      // Create a proper random shuffle for consistent randomization
+      const shuffledImages = [...images].sort(() => Math.random() - 0.5);
+      setDisplayImages(shuffledImages.slice(0, 25));
     }
   }, [filter, images]);
 
@@ -80,11 +106,12 @@ function ImageGrid() {
           .slice(prevImages.length, prevImages.length + 25),
       ]);
     } else if (filter === "Random") {
+      // For random, we need to get the next batch of random images
+      // that haven't been shown yet
+      const allShuffled = [...images].sort(() => Math.random() - 0.5);
       setDisplayImages((prevImages) => [
         ...prevImages,
-        ...[...images]
-          .sort(() => Math.random() - 0.5)
-          .slice(prevImages.length, prevImages.length + 25),
+        ...allShuffled.slice(prevImages.length, prevImages.length + 25),
       ]);
     }
   };
@@ -93,7 +120,8 @@ function ImageGrid() {
     <div className="mt-4 flex flex-col w-4/5 mx-auto">
       <div className="flex justify-between w-full text-center mx-auto">
         <select
-          onChange={(e) => setFilter(e.target.value)}
+          value={filter}
+          onChange={(e) => handleFilterChange(e.target.value)}
           className="border-2 border-black p-2 rounded-lg"
         >
           <option value="Older">Older</option>
